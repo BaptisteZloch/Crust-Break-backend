@@ -1,4 +1,4 @@
-"""crust_break_backend URL Configuration
+"""epf_projets_site_vitrine URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -13,13 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+from . import views
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
+app_name = 'site_vitrine'
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/recette/', include('crust_break_recette_api.urls')),
-    #path('api/v1/user/', include('crust_break_user_api.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    #path('search', views.accueil,name="accueil"),
+    #path('search', views.accueil,name="accueil"),
+]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
