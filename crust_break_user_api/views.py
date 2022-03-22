@@ -11,7 +11,17 @@ def updateUser(request):
     return
 def deleteUser(request):
     return
-def AddRecetteToDo(request):
+def addRecetteToDo(request):
     return
-def AddRecetteToFavorites(request):
+def addRecetteFavorites(request):
+    return
+def deleteRecetteToDo(request):
+    return
+def deleteRecetteFavorites(request):
+    return
+def getRecetteToDo(request):
+    return
+def deleteRecetteFavorites(request):
+    return
+def getRecetteFavorites(request):
     return
