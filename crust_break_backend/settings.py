@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crust_break_recette_api',
+    'crust_break_user_api',
 ]
 
 MIDDLEWARE = [
