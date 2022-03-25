@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-def AddUser(request):
+def addUser(request):
     return
 def listUser(request):
     return
@@ -27,7 +27,6 @@ def getRecetteFavorites(request):
     return
 def getRecettesRecommadations(request):
     return
-
 def generateListeCourses(request):
     return
 def generateReceipe(request):
