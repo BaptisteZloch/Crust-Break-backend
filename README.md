@@ -17,5 +17,9 @@
 
     `python manage.py migrate crust_break_recette_api`
 
+    `python manage.py makemigrations crust_break_user_api`
+
+    `python manage.py migrate crust_break_user_api`
+
 - A présent la base de données est remplie avec les tables mais elle ne contient aucune données.
 - Pour lancer le serveur django : `python manage.py runserver` pour le run sur une autre adresse IP ou un autre port : `python manage.py runserver 0.0.0.0:8070`

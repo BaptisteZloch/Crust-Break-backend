@@ -35,6 +35,9 @@ urlpatterns = [
     path('<int:user_id>/get/favorites-receipes', views.getRecetteFavorites,name="get_user_favorites_recette"),
     
     path('<int:user_id>/get/receipes-recommandations', views.getRecettesRecommadations,name="get_user_recommandation"),
-      
+            
+    path('<int:user_id>/generate-liste-de-courses', views.generateListeCourses,name="generate_liste_course"),
+    path('<int:user_id>/generate-receipe', views.generateReceipe,name="generate_receipe"),
+    
     #path('search', views.searchRecette,name="search_recette"),
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
