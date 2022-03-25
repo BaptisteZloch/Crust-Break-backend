@@ -25,3 +25,5 @@ def deleteRecetteFavorites(request):
     return
 def getRecetteFavorites(request):
     return
+def getRecettesRecommadations(request):
+    return
