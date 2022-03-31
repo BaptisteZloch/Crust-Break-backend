@@ -79,8 +79,8 @@ DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'crust_break_db',
-        'USER': 'sadmin',
-        'PASSWORD': 'password',
+        'USER': 'crb',
+        'PASSWORD': 'crn-bdd2603',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }

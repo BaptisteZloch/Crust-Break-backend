@@ -24,6 +24,6 @@ class User(models.Model):
     naissance = models.DateField()
     email = models.EmailField()
     password = models.CharField(max_length=250)
-    #address = models.EmbeddedModelField('Address')
+    gouts = models.JSONField()
 
     
