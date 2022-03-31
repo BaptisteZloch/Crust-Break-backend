@@ -78,8 +78,8 @@ WSGI_APPLICATION = 'crust_break_backend.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'crust_break_db',
-        'USER': 'crb',
+        'NAME': 'crust_break_db_arno',
+        'USER': 'newuser',
         'PASSWORD': 'crn-bdd2603',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
