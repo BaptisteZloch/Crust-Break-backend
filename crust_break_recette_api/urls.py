@@ -20,7 +20,6 @@ from django.conf.urls.static import static
 
 app_name = 'crust_break_recette_api'
 urlpatterns = [
-    path('list', views.listRecette,name="list_recette"),
     path('detail/<int:recette_id>', views.detailRecette,name="detail_recette"),
     path('search', views.searchRecette,name="search_recette"),
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
