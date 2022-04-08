@@ -27,7 +27,7 @@ def getRecetteFavorites(request):
     return
 def getRecettesRecommadations(request):
     return
-def generateListeCourses(request):
-    return
-def generateReceipe(request):
-    return
+# def generateListeCourses(request):
+#     return
+# def generateReceipe(request):
+#     return

@@ -39,3 +39,51 @@ class Api():
         response = requests.get(url=url,headers=headers,params=param_string)
         response_content_dict = json.loads(response.content.decode("utf-8"))
         return dict(response_content_dict)
+
+    def getTextFromImage(self, image_file_name):
+        image_url = f'http://94.247.183.221:8020/static/uploaded_receipts/{image_file_name}'
+
+        url = "https://ocrly-image-to-text.p.rapidapi.com/"
+
+        #querystring = {"imageurl":image_url,"filename":"sample.jpg"}
+
+        headers = {
+            "X-RapidAPI-Host": "ocrly-image-to-text.p.rapidapi.com",
+            "X-RapidAPI-Key": settings.RAPIDAPI_KEY
+        }
+
+        #response = requests.get(url=url,headers=headers,params=querystring)
+        #response_content_str = str(response.content.decode("utf-8"))
+        #return response_content_str
+
+    def getIngredientsFromText(self, raw_text):
+        url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/detect"
+
+        payload = f'text={raw_text}'
+        headers = {
+            "content-type": "application/x-www-form-urlencoded",
+            "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            "X-RapidAPI-Key": settings.RAPIDAPI_KEY
+        }
+
+        response = requests.post(url, data=payload, headers=headers)
+        response_content_dict = json.loads(response.content.decode("utf-8"))
+        ingredient_list = []
+        for ingredient in response_content_dict['annotations']:
+            if ingredient['tag'] == 'ingredient':
+                ingredient_list.append(ingredient['annotation'])
+        return ','.join(ingredient_list)
+
+    def searchRecipeByIngredient(self, ingredients):
+        url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients"
+
+        querystring = {"ingredients":ingredients,"number":"10","ignorePantry":"true","ranking":"1"}
+
+        headers = {
+            "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            "X-RapidAPI-Key": settings.RAPIDAPI_KEY
+        }
+
+        response = requests.get(url, headers=headers, params=querystring)
+        response_content_dict = json.loads(response.content.decode("utf-8"))
+        return dict(response_content_dict)
