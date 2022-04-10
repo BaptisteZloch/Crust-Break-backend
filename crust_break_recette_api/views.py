@@ -1,7 +1,6 @@
 import codecs
 import re
 import uuid
-from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from .api import *
 import base64
