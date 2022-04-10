@@ -22,6 +22,6 @@ app_name = 'crust_break_recette_api'
 urlpatterns = [
     path('detail/<int:recette_id>', views.detailRecette,name="detail_recette"),
     path('search', views.searchRecette,name="search_recette"),
-    #path('generate-liste-de-courses', views.generateListeCourses,name="generate_liste_course"),
+    path('generate-liste-de-courses', views.generateListeCourses,name="generate_liste_course"),
     path('generate-recipe', views.generateRecipe,name="generate_recipe"),
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

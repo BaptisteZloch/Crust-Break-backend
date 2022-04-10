@@ -86,3 +86,20 @@ class Api():
         response = requests.get(url, headers=headers, params=querystring)
         response_content_dict = json.loads(response.content.decode("utf-8"))
         return {"results": response_content_dict}
+    
+    def getIngredients(self, recette_id):
+        headers = {
+            "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            "X-RapidAPI-Key": settings.RAPIDAPI_KEY
+        }
+        url =f'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/{recette_id}/information'
+        response = requests.get(url=url,headers=headers)
+        response_content_dict = dict(json.loads(response.content.decode("utf-8")))
+        ingredients_reciept = []
+        for ingredient in response_content_dict['extendedIngredients']:
+            ingredient_dict = {}
+            ingredient_dict['quantity'] = "{} {}".format(ingredient['measures']["metric"]['amount'],ingredient['measures']["metric"]['unitShort'])
+            ingredient_dict['ingredient'] = ingredient['name']
+            ingredients_reciept.append(ingredient_dict)
+
+        return {'list':ingredients_reciept}

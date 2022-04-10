@@ -12,6 +12,13 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 def detailRecette(request,recette_id):
     return JsonResponse(Api().getRecipeInformations(recette_id))
 
+def generateListeCourses(request):
+    if request.GET.get('recipe') is not None or request.GET.get('recipe') is not '' :
+        return JsonResponse(Api().getIngredients(int(request.GET.get('recipe'))))
+    else:
+        return JsonResponse({'error':{'message':'missing the recipe id to search a recipe...'}})
+    
+
 def searchRecette(request):
     if request.GET.get('name') is not None or request.GET.get('name') is not '' :
         query_dict = {
