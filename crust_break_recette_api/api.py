@@ -76,7 +76,6 @@ class Api():
 
     def searchRecipeByIngredient(self, ingredients):
         url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients"
-
         querystring = {"ingredients":ingredients,"number":"10","ignorePantry":"true","ranking":"1"}
 
         headers = {
@@ -86,4 +85,4 @@ class Api():
 
         response = requests.get(url, headers=headers, params=querystring)
         response_content_dict = json.loads(response.content.decode("utf-8"))
-        return dict(response_content_dict)
+        return {"results": response_content_dict}

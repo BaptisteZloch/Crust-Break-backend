@@ -34,7 +34,7 @@ def generateRecipe(request):
         fh.write(base64.decodebytes(data))
         #fh.write(codecs.decode(strOne.strip(),'base64'))  
         
-    text_in_image = Api().getTextFromImage(file_name)
+    text_in_image = "I like to eat delicious tacos. Only cheeseburger with cheddar are better than that. But then again, pizza with pepperoni, mushrooms, and tomatoes is so good!"#Api().getTextFromImage(file_name)
     ingredient_in_text= Api().getIngredientsFromText(text_in_image)
 
     return JsonResponse(Api().searchRecipeByIngredient(ingredient_in_text))
