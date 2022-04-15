@@ -29,7 +29,7 @@ urlpatterns = [
     path('<int:user_id>/delete/todo-receipe', views.deleteRecetteToDo,name="delete_user_todo_recette"),
     path('<int:user_id>/add/todo-receipe', views.addRecetteToDo,name="add_user_todo_recette"),
     path('<int:user_id>/get/todo-receipes', views.getRecetteToDo,name="get_user_todo_recette"),
-    
+
     path('<int:user_id>/delete/favorites-receipe', views.deleteRecetteFavorites,name="delete_user_favorites_recette"),
     path('<int:user_id>/add/to-favorites', views.addRecetteFavorites,name="add_user_favorites_recette"),
     path('<int:user_id>/get/favorites-receipes', views.getRecetteFavorites,name="get_user_favorites_recette"),
