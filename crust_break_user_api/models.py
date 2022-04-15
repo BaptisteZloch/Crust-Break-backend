@@ -18,8 +18,9 @@ class ToDoReceipe(models.Model):
     User,
     on_delete=models.CASCADE,
     verbose_name="The related user",
+    null=True
     )
-    
+
     def __str__(self):
         return self.receipe_name
    
@@ -30,6 +31,7 @@ class FavoriteReceipe(models.Model):
     User,
     on_delete=models.CASCADE,
     verbose_name="The related user",
+    null=True
     )
     
     def __str__(self):
