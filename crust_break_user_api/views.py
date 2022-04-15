@@ -1,5 +1,8 @@
+import re
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from .models import *
+
 
 # Create your views here.
 
@@ -16,31 +19,44 @@ def updateUser(request):
 def deleteUser(request):
     return
 
-def addRecetteToDo(request,id):
-        query = RecetteToDo.objects.all().get(id=receipe_id)
-        query.add()
-        return HttpResponse("Recette Ajoutée")
+
+def addRecetteToDo(request, user_id):
+    recette_id = request.GET.get('recette_id')
+    query = ToDoReceipe.objects.all().get(id=recette_id)
+    return JsonResponse(RecetteToDo.add(query))
+    #  si il n'y a pas de classe Recettes tout court chercher dans toute l'api
     
+    
+def addRecetteFavorites(request, user_id):
+    query = Api().objects.all().get(id=receipe_id)
+    return JsonResponse(FavoritesReceipe.add(query))
 
-def addRecetteFavorites(request):
+
+def deleteRecetteToDo(request):
     return
 
-def deleteRecetteToDo(request, ID):
-    query = RecetteToDo.objects.all().get(ID=receipe_id)
-    query.delete()
-    return HttpResponse("Recette supprimée")
-    return render (request, 'deleteRecetteToDo.html', )
-   
-def deleteRecetteFavorites(request):
-    return
-def getRecetteToDo(request,nom):
-    RecetteToDo.objects.all().get(nom=receipe_name).add()
-    return HttpResponse()
 
 def deleteRecetteFavorites(request):
     return
-def getRecetteFavorites(request):
+
+def getRecetteToDo(request, receipe_id):
+    return JsonResponse(RecetteToDo().getReceipeInformations(receipe_id))
+
+def deleteRecetteFavorites(request):
     return
+    
+def getRecetteFavorites(request, receipe_id):
+    return(RecettesFavorites().getRecipeInformations(receipe_id))
+
+def deleteRecetteFavorites(request):
+    return
+
+
+def getRecetteFavorites(request, receipe_id):
+    return(RecettesFavorites().getReceipeInformations(receipe_id))
+
+
+
 def getRecettesRecommadations(request):
     return
 def generateListeCourses(request):
