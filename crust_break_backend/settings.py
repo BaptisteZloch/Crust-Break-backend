@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-8x7s7e_81=a#01j_6ee#_pmti1=m8!mh+441hd86=)w95i@&p+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1',]
+#Rapid API key
+RAPIDAPI_KEY = "91d5d9130emsh7252173ab9f1d84p11f5dajsn3133136f31df"
+
+ALLOWED_HOSTS = ['localhost','127.0.0.1','94.247.183.221']
 
 
 # Application definition
@@ -78,8 +81,8 @@ WSGI_APPLICATION = 'crust_break_backend.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'crust_break_db',
-        'USER': 'crb',
+        'NAME': 'crust_break_db_baptiste',
+        'USER': 'newuser',
         'PASSWORD': 'crn-bdd2603',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
@@ -123,11 +126,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 #STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),) # new
 
-#MEDIA_URL = 'media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
