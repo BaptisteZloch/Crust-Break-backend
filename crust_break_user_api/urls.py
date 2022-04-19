@@ -20,11 +20,11 @@ from django.conf.urls.static import static
 
 app_name = 'crust_break_user_api'
 urlpatterns = [
-    path('add/user', views.addUser, name="add_user"), #C
+    path('add', views.addUser, name="add_user"), #C
     path('list', views.listUser, name="list_user"),   #R
     path('detail/<int:user_id>', views.detailUser,name="detail_user"), #R
     path('update/<int:user_id>', views.updateUser,name="update_user"), #U
-    path('delete/<int:user_id>', views.deleteUser,name="delete_user"), #D
+    path('delete', views.deleteUser,name="delete_user"), #D
     
     path('<int:user_id>/delete/todo-receipe', views.deleteRecetteToDo,name="delete_user_todo_recette"),
     path('<int:user_id>/add/todo-receipe', views.addRecetteToDo,name="add_user_todo_recette"),
