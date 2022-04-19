@@ -33,8 +33,17 @@ def updateUser(request,user_id):
     email = request.POST.get('email')
     password = request.POST.get('password')
     gouts = request.POST.get('gouts')
-    User.objects.update(prenom=firstname,nom=lastname,naissance=birthdate,email=email,password=password,gouts=gouts)
-    return JsonResponse({'message':'User successfully updated !'})
+    user = User.objects.get(pk=user_id)
+    user.prenom=firstname
+    user.nom=lastname
+    user.naissance=birthdate
+    user.email=email
+    user.password=password
+    user.gouts=gouts
+    user.save()
+    user_dict={'message':'User successfully updated !'}
+    user_dict['updated user']=model_to_dict(user)
+    return JsonResponse(user_dict)
 
 
 def deleteUser(request,user_id):
