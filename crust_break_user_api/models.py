@@ -9,7 +9,8 @@ class User(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=250)
     gouts = models.JSONField()
-
+    def __str__(self):
+        return f'{self.prenom} {self.nom}'
 class ToDoReceipe(models.Model):
     receipe_id = models.PositiveIntegerField()
     receipe_name = models.CharField(max_length=250)
