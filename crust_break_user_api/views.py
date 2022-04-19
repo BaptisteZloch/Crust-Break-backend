@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
 
 # Create your views here.
+@csrf_exempt
 def addUser(request):
     firstname = request.POST.get('firstname')
     lastname = request.POST.get('lastname')
@@ -20,7 +21,9 @@ def listUser(request):
     return JsonResponse({'users':users})
     
 def detailUser(request,user_id):
-    return JsonResponse(model_to_dict(User.objects.get(pk=user_id)))
+    user_dict = model_to_dict(User.objects.get(pk=user_id))
+    user_dict['favorites recipes']=[model_to_dict(recette) for recette in FavoriteReceipe.objects.all().filter(user=User.objects.get(pk=int(user_id)))]
+    return JsonResponse(user_dict)
 
 @csrf_exempt
 def updateUser(request,user_id):

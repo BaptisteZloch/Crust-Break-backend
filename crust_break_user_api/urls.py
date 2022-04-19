@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 app_name = 'crust_break_user_api'
 urlpatterns = [
-    path('add/user', views.addUser, name="add_user"), #C
+    path('add', views.addUser, name="add_user"), #C
     path('list', views.listUser, name="list_user"),   #R
     path('detail/<int:user_id>', views.detailUser,name="detail_user"), #R
     path('update/<int:user_id>', views.updateUser,name="update_user"), #U
