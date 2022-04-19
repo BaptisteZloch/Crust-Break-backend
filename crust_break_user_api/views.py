@@ -6,7 +6,7 @@ from django.forms.models import model_to_dict
 
 # Create your views here.
 @csrf_exempt
-def addUser(request):
+def addUser(request): # ok et fonctionne
     firstname = request.POST.get('firstname')
     lastname = request.POST.get('lastname')
     birthdate = request.POST.get('birthdate')
@@ -16,17 +16,17 @@ def addUser(request):
     User.objects.create(prenom=firstname,nom=lastname,naissance=birthdate,email=email,password=password,gouts=gouts)
     return JsonResponse({'message':'User successfully created !'})
 
-def listUser(request):
+def listUser(request): # ok et fonctionne
     users = [model_to_dict(user) for user in User.objects.all()]
     return JsonResponse({'users':users})
     
-def detailUser(request,user_id):
+def detailUser(request,user_id): # ok et fonctionne
     user_dict = model_to_dict(User.objects.get(pk=user_id))
     user_dict['favorites recipes']=[model_to_dict(recette) for recette in FavoriteReceipe.objects.all().filter(user=User.objects.get(pk=int(user_id)))]
     return JsonResponse(user_dict)
 
 @csrf_exempt
-def updateUser(request,user_id):
+def updateUser(request,user_id): # ok et fonctionne
     firstname = request.POST.get('firstname')
     lastname = request.POST.get('lastname')
     birthdate = request.POST.get('birthdate')
@@ -46,7 +46,7 @@ def updateUser(request,user_id):
     return JsonResponse(user_dict)
 
 
-def deleteUser(request,user_id):
+def deleteUser(request): # ok et fonctionne
     user_id = request.GET.get('user_id')
     user = User.objects.get(pk=int(user_id))
     user.delete()
@@ -64,7 +64,7 @@ def addRecetteToDo(request, user_id):
     #  si il n'y a pas de classe Recettes tout court chercher dans toute l'api
     
 @csrf_exempt
-def addRecetteFavorites(request, user_id):
+def addRecetteFavorites(request, user_id): # ok et fonctionne
     recette_id = int(request.POST.get('recette_id'))
     recette_name = str(request.POST.get('recette_name'))
     user = User.objects.get(pk=int(user_id))
@@ -81,7 +81,7 @@ def deleteRecetteToDo(request,user_id):
   return JsonResponse({'message':'ok, recette supprimée !'})
 
 @csrf_exempt
-def deleteRecetteFavorites(request,user_id):
+def deleteRecetteFavorites(request,user_id): # ok et fonctionne
     recette_id = request.GET.get('recette_id')
     user = User.objects.get(pk=int(user_id))
     recette_favorite = FavoriteReceipe.objects.get(receipe_id=recette_id,user=user)
@@ -93,7 +93,7 @@ def getRecetteToDo(request, user_id):
     recettes = [model_to_dict(recette) for recette in ToDoReceipe.objects.all().filter(user=User.objects.get(pk=int(user_id)))]
     return JsonResponse({'recipes':recettes})
     
-def getRecetteFavorites(request, user_id):
+def getRecetteFavorites(request, user_id): # ok et fonctionne
     recettes = [model_to_dict(recette) for recette in FavoriteReceipe.objects.all().filter(user=User.objects.get(pk=int(user_id)))]
     return JsonResponse({'recipes':recettes})
 
