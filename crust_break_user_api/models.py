@@ -12,9 +12,12 @@ class User(models.Model):
     def __str__(self):
         return f'{self.prenom} {self.nom}'
 class ToDoReceipe(models.Model):
+
+    MEAL_TYPES = (('breakfast','breakfast'),('lunch','lunch'),('dinner','dinner'))
     receipe_id = models.PositiveIntegerField()
     receipe_name = models.CharField(max_length=250)
-    meal_date = models.DateTimeField()
+    meal_date = models.DateField()
+    meal_type = models.CharField(max_length=200,choices=MEAL_TYPES,null=True)
     user = models.ForeignKey(
     User,
     on_delete=models.CASCADE,

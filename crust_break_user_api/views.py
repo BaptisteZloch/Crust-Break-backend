@@ -54,14 +54,19 @@ def deleteUser(request): # ok et fonctionne
 
 @csrf_exempt
 def addRecetteToDo(request, user_id):
-    recette_id = request.GET['recette_id']
-    recette_name = request.GET['recette_name']
-    meal_date = request.GET['meal_date']
-    user_id = user_id
-    recette_todo = ToDoReceipe(recette_id,recette_name,meal_date,user_id)
-    recette_todo.save()
-    return JsonResponse({'message':'ok, recette ajoutée !'})
-    #  si il n'y a pas de classe Recettes tout court chercher dans toute l'api
+    recette_id = int(request.POST.get('recette_id'))
+    recette_name = str(request.POST.get('recette_name'))
+    meal_date = request.POST.get('meal_date')
+    meal_type = str(request.POST.get('meal_type'))
+    user = User.objects.get(pk=int(user_id))
+    recette_favorite = ToDoReceipe.objects.create(receipe_id=recette_id,
+                                                        receipe_name=recette_name,
+                                                        meal_date=meal_date,
+                                                        meal_type=meal_type,
+                                                        user=user)
+    
+    recette_favorite.save()
+    return JsonResponse({'message':'Recipe added to the todo list !'})
     
 @csrf_exempt
 def addRecetteFavorites(request, user_id): # ok et fonctionne
@@ -74,11 +79,14 @@ def addRecetteFavorites(request, user_id): # ok et fonctionne
     return JsonResponse({'message':'Recipe added to favorites !'})
     
 def deleteRecetteToDo(request,user_id):
-  recette_id = request.GET['recette_id']
-  user_id = user_id
-  recette_todo = ToDoReceipe(recette_id,recette_name,meal_date,user_id)
-  recette_todo.delete()
-  return JsonResponse({'message':'ok, recette supprimée !'})
+    recette_id = request.GET.get('recette_id')
+    meal_date = request.GET.get('meal_date')
+    meal_type = str(request.GET.get('meal_type'))
+    user = User.objects.get(pk=int(user_id))
+    ToDoReceipe.objects.get(receipe_id=recette_id,meal_date=meal_date,
+                                            meal_type=meal_type,user=user).delete()
+    recettes = [model_to_dict(recette) for recette in ToDoReceipe.objects.all().filter(user=User.objects.get(pk=int(user_id)))]
+    return JsonResponse({'message':'Recipe removed from todo ! ','todo recipes':recettes})
 
 @csrf_exempt
 def deleteRecetteFavorites(request,user_id): # ok et fonctionne
