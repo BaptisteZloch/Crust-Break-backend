@@ -24,6 +24,12 @@ SECRET_KEY = 'django-insecure-8x7s7e_81=a#01j_6ee#_pmti1=m8!mh+441hd86=)w95i@&p+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8080",
+]
 
 #Rapid API key
 RAPIDAPI_KEY = "91d5d9130emsh7252173ab9f1d84p11f5dajsn3133136f31df"
@@ -42,9 +48,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crust_break_recette_api',
     'crust_break_user_api',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
