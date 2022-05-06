@@ -105,5 +105,21 @@ def getRecetteFavorites(request, user_id): # ok et fonctionne
     recettes = [model_to_dict(recette) for recette in FavoriteReceipe.objects.all().filter(user=User.objects.get(pk=int(user_id)))]
     return JsonResponse({'recipes':recettes})
 
+@csrf_exempt
+def checkUserCanSignUp(request):
+    if User.objects.filter(email=str(request.POST.get('email'))).exists():
+        return JsonResponse({'code':-1,'message':'Error ! Email already exists...'})
+    elif User.objects.filter(password=str(request.POST.get('password'))).exists():
+        return JsonResponse({'code':-1,'message':'Error ! Password already exists...'})
+    else:
+        return JsonResponse({'code':1,'message':'Success ! User can signup'})
+
+@csrf_exempt
+def checkUserCanSignIn(request):
+    if User.objects.filter(email=str(request.POST.get('email'))).exists() and User.objects.filter(password=str(request.POST.get('password'))).exists():
+        return JsonResponse({'code':1,'message':'Success ! User can signup','user':model_to_dict(User.objects.filter(password=str(request.POST.get('password')),email=str(request.POST.get('email')))[0])})
+    else:
+        return JsonResponse({'code':-1,'message':'Error ! Credentials invalid...'})
+
 def getRecettesRecommadations(request,user_id):
     return

@@ -19,7 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 app_name = 'crust_break_user_api'
-urlpatterns = [
+urlpatterns = [  
+    path('can-sign-in', views.checkUserCanSignIn, name="check_signin"),
+    path('can-sign-up', views.checkUserCanSignUp, name="check_signup"),
+
     path('add', views.addUser, name="add_user"), #C
     path('list', views.listUser, name="list_user"),   #R
     path('detail/<int:user_id>', views.detailUser,name="detail_user"), #R
@@ -34,7 +37,5 @@ urlpatterns = [
     path('<int:user_id>/add/to-favorites', views.addRecetteFavorites,name="add_user_favorites_recette"),
     path('<int:user_id>/get/favorites-receipes', views.getRecetteFavorites,name="get_user_favorites_recette"),
     
-    path('<int:user_id>/get/receipes-recommandations', views.getRecettesRecommadations,name="get_user_recommandation"),
-                
-    #path('search', views.searchRecette,name="search_recette"),
+    #path('<int:user_id>/get/receipes-recommandations', views.getRecettesRecommadations,name="get_user_recommandation"),
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
