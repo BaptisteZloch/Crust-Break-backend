@@ -22,4 +22,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/recette/', include('crust_break_recette_api.urls')),
     path('api/v1/user/', include('crust_break_user_api.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

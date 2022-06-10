@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 import os
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,14 +28,15 @@ SECRET_KEY = 'django-insecure-8x7s7e_81=a#01j_6ee#_pmti1=m8!mh+441hd86=)w95i@&p+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
+#CORS_ALLOW_CREDENTIALS = True
+APP_ENV = os.getenv("APP_ENV")
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
 ]
 
 #Rapid API key
-RAPIDAPI_KEY = "91d5d9130emsh7252173ab9f1d84p11f5dajsn3133136f31df"
+RAPIDAPI_KEY = os.getenv("RAPIDAPI_KEY")
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1','94.247.183.221']
 
@@ -89,7 +93,7 @@ WSGI_APPLICATION = 'crust_break_backend.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'crust_break_db_baptiste',
+        'NAME': 'crust_break_db',
         'USER': 'newuser',
         'PASSWORD': 'crn-bdd2603',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
@@ -137,7 +141,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 #STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),) # new
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # Default primary key field type

@@ -24,4 +24,4 @@ urlpatterns = [
     path('search', views.searchRecette,name="search_recette"),
     path('generate-liste-de-courses', views.generateListeCourses,name="generate_liste_course"),
     path('generate-recipe', views.generateRecipe,name="generate_recipe"),
-]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

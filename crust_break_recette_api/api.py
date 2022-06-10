@@ -41,20 +41,20 @@ class Api():
         return dict(response_content_dict)
 
     def getTextFromImage(self, image_file_name):
-        image_url = f'http://94.247.183.221:8020/static/uploaded_receipts/{image_file_name}'
+        image_url = f'http://94.247.183.221:8040/media/{image_file_name}'
 
         url = "https://ocrly-image-to-text.p.rapidapi.com/"
 
-        #querystring = {"imageurl":image_url,"filename":"sample.jpg"}
+        querystring = {"imageurl":image_url,"filename":"sample.jpg"}
 
         headers = {
             "X-RapidAPI-Host": "ocrly-image-to-text.p.rapidapi.com",
             "X-RapidAPI-Key": settings.RAPIDAPI_KEY
         }
 
-        #response = requests.get(url=url,headers=headers,params=querystring)
-        #response_content_str = str(response.content.decode("utf-8"))
-        #return response_content_str
+        response = requests.get(url=url,headers=headers,params=querystring)
+        response_content_str = str(response.content.decode("utf-8"))
+        return response_content_str
 
     def getIngredientsFromText(self, raw_text):
         url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/detect"
